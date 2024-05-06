@@ -8,11 +8,13 @@ import type { FullscreenAdapter } from '../foundation/fullscreen/controller';
 import type { AudioProvider } from './audio/provider';
 import type { HLSProvider } from './hls/provider';
 import type { VideoProvider } from './video/provider';
+import type { WHEPProvider } from './whep/provider';
 
 export type AnyMediaProvider =
   | ({ type: 'audio' } & AudioProvider)
   | ({ type: 'video' } & VideoProvider)
-  | ({ type: 'hls' } & HLSProvider);
+  | ({ type: 'hls' } & HLSProvider)
+  | ({ type: 'whep' } & WHEPProvider);
 
 export interface MediaProviderLoader<Provider extends MediaProviderAdapter = MediaProviderAdapter> {
   target: HTMLElement | null;

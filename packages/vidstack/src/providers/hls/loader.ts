@@ -1,4 +1,4 @@
-import type { MediaSrc } from '../../core';
+import type { MediaContext, MediaSrc } from '../../core';
 import { isHLSSrc } from '../../utils/mime';
 import { preconnect } from '../../utils/network';
 import { isHLSSupported } from '../../utils/support';
@@ -20,7 +20,7 @@ export class HLSProviderLoader
     return HLSProviderLoader.supported && isHLSSrc(src);
   }
 
-  override async load(context) {
+  override async load(context: MediaContext) {
     if (__SERVER__) {
       throw Error('[vidstack] can not load hls provider server-side');
     }

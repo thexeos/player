@@ -51,6 +51,20 @@ export function isHLSSrc({ src, type }: MediaSrc): boolean {
   return (isString(src) && HLS_VIDEO_EXTENSIONS.test(src)) || HLS_VIDEO_TYPES.has(type);
 }
 
+// Non-standard
+export const WHEP_TYPES = new Set<string>([
+  // Generic type. Expected to make use of WHEP provider.
+  'application/x-whep',
+  // Video track(s) selection. Audio track(s) SHOULD not be consumed.
+  'video/x-whep',
+  // Audio track(s) selection. Video track(s) SHOULD not be consumed.
+  'audio/x-whep',
+]);
+
+export function isWHEPSrc({ type }: MediaSrc): boolean {
+  return WHEP_TYPES.has(type);
+}
+
 export function isMediaStream(src: unknown): src is MediaStream {
   return (
     !__SERVER__ && typeof window.MediaStream !== 'undefined' && src instanceof window.MediaStream

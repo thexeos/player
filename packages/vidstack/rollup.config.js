@@ -105,6 +105,7 @@ function define({ target, type, minify }) {
       [`providers/vidstack-audio`]: 'src/providers/audio/provider.ts',
       [`providers/vidstack-video`]: 'src/providers/video/provider.ts',
       [`providers/vidstack-hls`]: 'src/providers/hls/provider.ts',
+      [`providers/vidstack-whep`]: 'src/providers/whep/provider.ts',
     };
 
     input['define/vidstack-audio-layout'] =
@@ -206,6 +207,7 @@ function defineCDN({ dev = false, layouts = false } = {}) {
       [`providers/vidstack-audio`]: 'src/providers/audio/provider.ts',
       [`providers/vidstack-video`]: 'src/providers/video/provider.ts',
       [`providers/vidstack-hls`]: 'src/providers/hls/provider.ts',
+      [`providers/vidstack-whep`]: 'src/providers/whep/provider.ts',
     },
     output: {
       format: 'esm',

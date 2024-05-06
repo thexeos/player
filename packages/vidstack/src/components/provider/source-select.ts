@@ -14,10 +14,11 @@ import {
   AudioProviderLoader,
   HLSProviderLoader,
   VideoProviderLoader,
+  WHEPProviderLoader,
   type MediaProviderLoader,
 } from '../../providers';
 import { resolveStreamTypeFromHLSManifest } from '../../utils/hls';
-import { isHLSSrc } from '../../utils/mime';
+import { isHLSSrc, isWHEPSrc } from '../../utils/mime';
 import { getRequestCredentials, preconnect } from '../../utils/network';
 import { isHLSSupported } from '../../utils/support';
 
@@ -35,13 +36,14 @@ export class SourceSelection {
     private _loader: WriteSignal<MediaProviderLoader | null>,
   ) {
     const HLS_LOADER = new HLSProviderLoader(),
+      WHEP_LOADER = new WHEPProviderLoader(),
       VIDEO_LOADER = new VideoProviderLoader(),
       AUDIO_LOADER = new AudioProviderLoader();
 
     this._loaders = computed<MediaProviderLoader[]>(() => {
       return _media.$props.preferNativeHLS()
-        ? [VIDEO_LOADER, AUDIO_LOADER, HLS_LOADER]
-        : [HLS_LOADER, VIDEO_LOADER, AUDIO_LOADER];
+        ? [VIDEO_LOADER, AUDIO_LOADER, HLS_LOADER, WHEP_LOADER]
+        : [HLS_LOADER, VIDEO_LOADER, AUDIO_LOADER, WHEP_LOADER];
     });
 
     const { $state } = _media;
@@ -211,6 +213,10 @@ export class SourceSelection {
             })
             .catch(noop);
         }
+      } else if (isWHEPSrc(source)) {
+        this._media.delegate._dispatch('stream-type-change', {
+          detail: 'll-live',
+        });
       } else {
         this._media.delegate._dispatch('stream-type-change', {
           detail: 'on-demand',

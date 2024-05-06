@@ -6,9 +6,12 @@ export async function waitForEvent<Event>(
   options?: (EventListenerOptions | AddEventListenerOptions) & { timeout?: number },
 ): Promise<Event> {
   return new Promise((resolve, reject) => {
-    const timerId = window.setTimeout(() => {
-      reject(`Timed out waiting for event \`${type}\`.`);
-    }, options?.timeout ?? 1000);
+    const timerId = window.setTimeout(
+      () => {
+        reject(`Timed out waiting for event \`${type}\`.`);
+      },
+      options?.timeout ?? 1000,
+    );
     listenEvent(
       target,
       type as any,

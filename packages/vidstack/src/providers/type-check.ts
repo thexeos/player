@@ -1,6 +1,7 @@
 import type { AudioProvider } from './audio/provider';
 import type { HLSProvider } from './hls/provider';
 import type { VideoProvider } from './video/provider';
+import type { WHEPProvider } from './whep/provider';
 
 /** @see {@link https://www.vidstack.io/docs/player/providers/audio} */
 export function isAudioProvider(provider: any): provider is AudioProvider {
@@ -15,6 +16,11 @@ export function isVideoProvider(provider: any): provider is VideoProvider {
 /** @see {@link https://www.vidstack.io/docs/player/providers/hls} */
 export function isHLSProvider(provider: any): provider is HLSProvider {
   return provider?.$$PROVIDER_TYPE === 'HLS';
+}
+
+/** @see {@link https://www.vidstack.io/docs/player/providers/whep} */
+export function isWHEPProvider(provider: any): provider is WHEPProvider {
+  return provider?.$$PROVIDER_TYPE === 'WHEP';
 }
 
 /** @see {@link https://developer.mozilla.org/en-US/docs/Web/API/HTMLAudioElement} */

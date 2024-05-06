@@ -1,4 +1,5 @@
 import { DOMEvent, EventsTarget, isString, listenEvent } from 'maverick.js/std';
+
 import { TextTrackSymbol } from '../symbols';
 import type { TextTrack } from '../text-track';
 import type { TextRenderer } from './text-renderer';

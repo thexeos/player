@@ -1,4 +1,5 @@
 import { tick } from 'maverick.js';
+
 import { mediaState } from '.';
 import { PlayerQueryList } from './query-list';
 

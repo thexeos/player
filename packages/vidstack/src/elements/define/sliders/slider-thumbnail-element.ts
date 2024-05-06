@@ -1,4 +1,5 @@
 import { effect, useState, type StateContext } from 'maverick.js';
+
 import { Slider } from '../../../components';
 import { MediaThumbnailElement } from '../thumbnail-element';
 

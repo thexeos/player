@@ -1,5 +1,6 @@
 import { effect, peek, ViewController, type Dispose, type ReadSignal } from 'maverick.js';
 import { listenEvent } from 'maverick.js/std';
+
 import { hasAnimation } from '../../../utils/dom';
 
 export interface PopperDelegate {

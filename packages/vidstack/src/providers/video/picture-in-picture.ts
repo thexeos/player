@@ -12,7 +12,10 @@ declare global {
 }
 
 export class VideoPictureInPicture implements MediaPictureInPictureAdapter {
-  constructor(protected _video: HTMLVideoElement, private _media: MediaContext) {
+  constructor(
+    protected _video: HTMLVideoElement,
+    private _media: MediaContext,
+  ) {
     listenEvent(this._video, 'enterpictureinpicture', this._onEnter.bind(this));
     listenEvent(this._video, 'leavepictureinpicture', this._onExit.bind(this));
   }
